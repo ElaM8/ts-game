@@ -5,6 +5,11 @@ type Game = {
     paper: string;
     scissors: string;
   };
+  result: {
+    draw: string;
+    AIWins: string;
+    PlayerWins: string;
+  }
 };
 
 export default Game
