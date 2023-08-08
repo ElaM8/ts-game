@@ -1,5 +1,7 @@
-import './style.css';
+import './style.scss';
 import Game from './data/types'
+
+
 
 //setup game/game board logic
 const game: Game = {
