@@ -1,3 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&display=swap");
 * {
-  background-color: aquamarine;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Assistant", arial;
 }
+
+nav {
+  height: 130px;
+  background-color: #0f569e;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+nav avisited {
+  color: #fff;
+  text-decoration: none;
+}
+
+.game__rules-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+}
+.game__rules-container #game__rules--reference-text {
+  max-width: 30%;
+}
+.game__rules-container #game__rules--video {
+  max-width: 30%;
+}
+.game__rules-container #game__rules--reference-chart {
+  max-width: 30%;
+}
+
+main {
+  max-width: 600px;
+}
+
+main {
+  background-color: #fff;
+}/*# sourceMappingURL=style.css.map */
