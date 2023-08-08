@@ -1,0 +1,37 @@
+@use "./base" as *;
+
+button {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: black 5px solid;
+  font-size: 0;
+  
+  //  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.3;
+    }
+  }
+
+#rock {
+  background-image: url("assets/rock.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+#paper {
+  background-image: url("assets/paper.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+#scissors {
+  background-image: url("assets/scissors.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
