@@ -27,7 +27,7 @@ main {
     font-size: 70px;
     padding-bottom: 50px;
   }
-.game__rules-container {
+#game__rules-container {
   display: grid;
   grid-gap: 100px;
   
@@ -68,18 +68,28 @@ main {
   margin-left: -50px;
   margin-top: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 50vh;
+  h3, 
+  .game__display--choice, 
+  .game__display--result {
+    height: 3em;
+    font-size: 30px;
+    padding-bottom: 20px;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    color: $color-background;
+  }
+  .game__display--choice {
+    padding-top: 40px;
+    color: $color-background;
+  }
+  .game__display--result {
+    padding-top: 40px;
+    color: $colour-secondary;
+    font-size: 50px;
+  }
 }
-
-
-
-
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: nowrap;
-  // align-items: flex-start;
-  // flex: 0 0 33.333333%;
-  // align-items: center;
 }

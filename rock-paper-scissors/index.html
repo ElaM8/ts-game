@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="" />
+    <script src="https://kit.fontawesome.com/341837e3cc.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
   </head>
   <body>
     <nav id="navigation">
       <a href="#game__rules-container">RPS Rules</a>
-      <a href="#game__input--buttons">Play RPS</a>
+      <a href="#game__game-board">Play RPS</a>
       <a href="#">Trivia</a>
       <a href="#">Leaderboard</a>
     </nav>
@@ -19,7 +20,7 @@
           <h1>Rock Paper Scissors</h1>
           <span id="tagline"></span>
         </div>
-        <div class="game__rules-container">
+        <div id="game__rules-container">
           <div id="game__rules--reference-text">
             <h2>Official International Rules of Rock Paper Scissors</h2>
             <p>Despite its underlying complexity, the game’s rules are straightforward. Players deliver hand signals simultaneously representing rock, paper, or scissors, with the outcome determined by these three rules:</p>
@@ -37,16 +38,21 @@
         </div>
       </section>
       <section id="game__game-board">
-      <div class="game__input-buttons">
-        <button class="game__input--button" id="rock">rock</button>
-        <button class="game__input--button" id="paper">paper</button>
-        <button class="game__input--button" id="scissors">scissors</button>
+        <h3 class="game__game-board--instruction"> Player, make your choice:</h3>
+        <div class="game__input-buttons">
+          <button class="game__input--button" id="rock">rock</button>
+          <button class="game__input--button" id="paper">paper</button>
+          <button class="game__input--button" id="scissors">scissors</button>
       </div>
-      </section>
-      <section class="game__winners-container">
+        <div class="displays">
+          <div class="game__display--choice"></div>
+          <div class="game__display--result"></div>
+        </div>
+      <div class="game__winners-container">
         <div id="game__winner-announcement"></div>
         <span id="winer-name"></span>
         <!-- Interesting info about winners / make leaderboard api / trivia if big bang theory api  -->
+      </div>
       </section>
     </main>
     <div id="app"></div>

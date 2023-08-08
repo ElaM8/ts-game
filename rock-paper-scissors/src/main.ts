@@ -18,12 +18,20 @@ const game: Game = {
   }  
 }
 
+const instruction = document.querySelector<HTMLHeadingElement>("h3");
+const displayResult = document.querySelector<HTMLDivElement>(".game__display--result");
+const displayChoice = document.querySelector<HTMLDivElement>(".game__display--choice");
 const userInputButtons = document.querySelectorAll<HTMLButtonElement>(".game__input--button");
 let AIChoice: string;
+let result: string;
 
 
 if (userInputButtons.length === 0) {
   throw new Error("check that nodes exist")
+}
+
+if (!displayChoice || !instruction || !displayResult) {
+  throw new Error("check selector")
 }
 
 // get computer playing token [rock, paper, or scissors]
@@ -40,24 +48,39 @@ getAIChoice()
     let userInput = (e.target as HTMLInputElement).innerText.toLowerCase();
     if (userInput) {
     userInputButtons.forEach(b => b.disabled = true);
-    return declareWinner(userInput)
+    instruction.style.display = "none"; 
+    displayChoice.innerText = `You have chosen ${userInput}. 
+                              The computer player has chosen ${AIChoice}.`
+    return decideWinner(userInput)
   }
 }
 userInputButtons.forEach(b => b.addEventListener("click", handleButtonClick));
 
+  const announceWinner = () => {
+    displayResult.innerText = `${result}!!`
+  }
+
 // get win decision using computer token and player's token and evaluating for winning token
-const declareWinner = (userInput: string) => {
+const decideWinner = (userInput: string) => {
   // const { winningTokens } = game
   if (AIChoice === userInput) {
-    return alert(game.result.draw)        
+    setTimeout(announceWinner, 3000)
+    result = game.result.draw
   } else if (userInput === 'paper' && AIChoice === 'rock' ||
       userInput === 'scissors' && AIChoice === 'paper' ||
       userInput === 'rock' && AIChoice === 'scissors') {
-    return alert(game.result.PlayerWins)
+    setTimeout(announceWinner, 3000)
+    result = game.result.PlayerWins
     } else {
-      return alert(game.result.AIWins)
+    setTimeout(announceWinner, 3000)
+    result = game.result.AIWins
     }
+    return result
   }
+
+
+
+  
 
 
 // Why dono variants of this work? I'm comparing a string in an object to a string or other non {} - does that present an issue?? Doesnt work if i'm comparing properties either, sooooooo....
