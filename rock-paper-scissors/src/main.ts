@@ -21,21 +21,31 @@ const instruction = document.querySelector<HTMLHeadingElement>("h3");
 const displayResult = document.querySelector<HTMLDivElement>(".game__display--result");
 const displayChoice = document.querySelector<HTMLDivElement>(".game__display--choice");
 const userInputButtons = document.querySelectorAll<HTMLButtonElement>(".game__input--button");
+const displayHumanScore = document.querySelector<HTMLDivElement>(".human-score");
+const displayComputerScore = document.querySelector<HTMLDivElement>(".computer-score");
+
 let AIChoice: string;
 let result: string;
+let humanScore: number = 0;
+let computerScore: number = 0;
+displayHumanScore.innerText = humanScore;
+displayComputerScore.innerText = computerScore;
 
 if (userInputButtons.length === 0) {
   throw new Error("check that nodes exist")
 }
 
-if (!displayChoice || !instruction || !displayResult) {
+if (!displayChoice || 
+  !instruction || 
+  !displayResult || 
+  !displayComputerScore || 
+  !displayHumanScore) {
   throw new Error("check selector")
 }
 
 const getAIChoice = () => {
   const math: number = Math.floor(Math.random() * game.tokenChoices.length)
   AIChoice = game.tokenChoices[math]
-  console.log(AIChoice)
   return AIChoice
 }
 
@@ -73,12 +83,35 @@ const decideWinner = (userInput: string) => {
   }
 
     const announceWinner = (result: string) => {
-    setTimeout(displayResult.innerText = `${result}!!`, 3000)
-    setTimeout(resetGame, 3000)
+    setTimeout(displayResult.innerText = `${result}!!`, 2000)
+    setTimeout(resetGame, 2000)
   }
 
+  // TODO: add button option to reset
+  // TODO: add confetti
+
+  const incrementScore = () => {
+      if (result === game.result.draw) {
+      computerScore ++;
+      humanScore ++;
+      displayHumanScore.innerText = humanScore;
+      displayComputerScore.innerText = computerScore;
+    } else if (result === game.result.PlayerWins) {
+      humanScore ++;
+      displayHumanScore.innerText = humanScore;
+    } else if (result === game.result.AIWins) {
+      computerScore ++;
+      displayComputerScore.innerText = computerScore;
+    } else {
+      console.log("There's been an error. ")
+    }
+  }
+
+  // TODO: add input for how many games to play. Can just add up both scores and if => input, then were done. 
+ // TODO: Also add, we're done final winner announcement 
+
   const resetGame = () => {
-    console.log("GAME RESETTING");
+    incrementScore();
     AIChoice = "";
     result = "";
     instruction.style.visibility = "visible"; 
@@ -86,31 +119,3 @@ const decideWinner = (userInput: string) => {
     displayResult.innerText = "";
     userInputButtons.forEach(b => b.disabled = false);
   }
-
-
-// const decideWinner = (userInput: string) => {
-//   const { winningTokens } = game
-//   if (AIChoice === userInput) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.draw
-//   } else if (userInput === "paper" && (winningTokens["paper"].includes(AIChoice))) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.PlayerWins
-//   } else if (userInput === "rock" && (winningTokens["rock"].includes(AIChoice))) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.PlayerWins
-//   } else if (userInput === "scissors" && (winningTokens["scissors"].includes(AIChoice))) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.PlayerWins
-//   } else if (userInput === "lizard" && (winningTokens["lizard"].includes(AIChoice))) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.PlayerWins
-//   } else if (userInput === "spock" && (winningTokens["spock"].includes(AIChoice))) {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.PlayerWins
-//   } else {
-//     setTimeout(announceWinner, 3000)
-//     result = game.result.AIWins
-//     }
-//     return result
-//   }

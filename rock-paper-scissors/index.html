@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="" />
-    <script src="https://kit.fontawesome.com/341837e3cc.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/341837e3cc.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
   </head>
@@ -11,7 +14,6 @@
     <nav id="navigation">
       <a href="#game__rules-container">RPS Rules</a>
       <a href="#game__game-board">Play RPS</a>
-      <a href="#">Trivia</a>
       <a href="#">Leaderboard</a>
     </nav>
     <main>
@@ -23,39 +25,65 @@
         <div id="game__rules-container">
           <div id="game__rules--reference-text">
             <h2>Official International Rules of Rock Paper Scissors</h2>
-            <p>Despite its underlying complexity, the game’s rules are straightforward. Players deliver hand signals simultaneously representing rock, paper, or scissors, with the outcome determined by these three rules:</p>
+            <p>
+              Despite its underlying complexity, the game’s rules are
+              straightforward. Players deliver hand signals simultaneously
+              representing rock, paper, or scissors, with the outcome determined
+              by these three rules:
+            </p>
             <ol>
               <li>Rock wins against scissors.</li>
               <li>Scissors win against paper.</li>
               <li>Paper wins against rock.</li>
             </ol>
-            <p><em>Source: The World Rock Paper Scissors Association (WRPSA)</em></p>
+            <p>
+              <em>Source: The World Rock Paper Scissors Association (WRPSA)</em>
+            </p>
           </div>
           <div id="game__rules--video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/x5Q6-wMx-K8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/x5Q6-wMx-K8"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
-          <img id="game__rules--reference-chart" src="assets/refernece -rock_paper_scissors_lizard_spock.svg.png" aria-label="reference chart of wining choices for rock-paper-scissors">
+          <img
+            id="game__rules--reference-chart"
+            src="assets/refernece -rock_paper_scissors_lizard_spock.svg.png"
+            aria-label="reference chart of wining choices for rock-paper-scissors"
+          />
         </div>
       </section>
       <section id="game__game-board">
-        <h3 class="game__game-board--instruction"> Human, make your choice:</h3>
+        <h3 class="game__game-board--instruction">Human, please make your choice:</h3>
         <div class="game__input-buttons">
           <button class="game__input--button" id="rock">rock</button>
           <button class="game__input--button" id="paper">paper</button>
           <button class="game__input--button" id="scissors">scissors</button>
           <button class="game__input--button" id="lizard">lizard</button>
           <button class="game__input--button" id="spock">spock</button>
-      </div>
+        </div>
         <div class="displays">
           <div class="game__display--choice"></div>
           <div class="game__display--result"></div>
         </div>
-      <div class="game__winners-container">
-        <div id="game__winner-announcement"></div>
-        <span id="winer-name"></span>
-        <!-- Interesting info about winners / make leaderboard api / trivia if big bang theory api  -->
-      </div>
+        <div class="game__winners-container">
+          <div id="game__winner-announcement"></div>
+          <!-- Interesting info about winners / winner name input/ make leaderboard api / trivia if big bang theory api  -->
+        </div>
       </section>
+      <div class="game__scores--container">
+        <div class="game__scores--human-score">
+          <p><span class="human-score"></span>Human Score</p>
+        </div>
+        <div class="game__scores--computer-score">
+          <p><span class="computer-score"></span>Computer Score</p>
+        </div>
+      </div>
     </main>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>

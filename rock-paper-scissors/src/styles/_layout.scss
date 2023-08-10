@@ -57,11 +57,34 @@ main {
   }
 
   #game__rules--reference-chart {
-    order: -1;
-    max-width: 85%;
+    max-width: 80%;
     margin: auto;
   }
 }
+
+.game__game-board--rounds-input {
+  background-color: $colour-secondary;
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  height: 500px;
+  border-bottom: black solid 1em;
+  color: #fff;
+  height: 5em;
+  font-size: 30px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-top: 50px;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  color: $color-background;
+  input {
+    font-size: 20px;
+    font-weight: $font-weight-bold;
+    color: black;
+  }
+}
+
 #game__game-board {
   background-color: $colour-primary;
   width: 100vw;
@@ -91,5 +114,30 @@ main {
     color: $colour-secondary;
     font-size: 50px;
   }
+}
+.game__scores--container {
+  background-color: red;
+  background-color: $colour-secondary;
+  width: 100vw;
+  margin-left: -50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 30vh;
+  font-size: 30px;
+  padding-bottom: 36px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  border-top: black solid 1em;
+  p {
+    display: flex;
+    flex-direction: column;
+    background-color: greem;
+    span {
+      font-size: 85px;
+    }
+  }
+
 }
 }
