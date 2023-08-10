@@ -1,20 +1,19 @@
 import './style.scss';
 import Game from './data/types'
 
-
-
-//setup game/game board logic
 const game: Game = {
-  tokenChoices: ["rock", "paper", "scissors"],
+  tokenChoices: ["rock", "paper", "scissors", "lizard", "spock"],
   winningTokens: {
-    rock: 'scissors',
-    paper: 'rock',
-    scissors: 'paper'
+    "rock": ["scissors", "lizard"],
+    "paper": ["rock", "spock"],
+    "scissors": ["paper", "lizard"],
+    "lizard": ["paper", "spock"],
+    "spock": ["rock", "scissors"]
   },
-  result: { // can I not use expressions in an object?
-    draw: 'Its a draw!',
-    AIWins: 'The computer has beaten the player',
-    PlayerWins: 'The player has beaten the computer'
+  result: {
+    draw: 'Its a draw',
+    AIWins: 'The computer has beaten the human',
+    PlayerWins: 'You have beaten the computer'
   }  
 }
 
@@ -25,7 +24,6 @@ const userInputButtons = document.querySelectorAll<HTMLButtonElement>(".game__in
 let AIChoice: string;
 let result: string;
 
-
 if (userInputButtons.length === 0) {
   throw new Error("check that nodes exist")
 }
@@ -34,21 +32,19 @@ if (!displayChoice || !instruction || !displayResult) {
   throw new Error("check selector")
 }
 
-// get computer playing token [rock, paper, or scissors]
 const getAIChoice = () => {
   const math: number = Math.floor(Math.random() * game.tokenChoices.length)
   AIChoice = game.tokenChoices[math]
   console.log(AIChoice)
   return AIChoice
 }
-getAIChoice()
 
-// get human player token choice, by button input
   const handleButtonClick = (e: Event) => {
+    getAIChoice()
     let userInput = (e.target as HTMLInputElement).innerText.toLowerCase();
     if (userInput) {
     userInputButtons.forEach(b => b.disabled = true);
-    instruction.style.display = "none"; 
+    instruction.style.visibility = "hidden"; 
     displayChoice.innerText = `You have chosen ${userInput}. 
                               The computer player has chosen ${AIChoice}.`
     return decideWinner(userInput)
@@ -56,34 +52,65 @@ getAIChoice()
 }
 userInputButtons.forEach(b => b.addEventListener("click", handleButtonClick));
 
-  const announceWinner = () => {
-    displayResult.innerText = `${result}!!`
-  }
-
-// get win decision using computer token and player's token and evaluating for winning token
 const decideWinner = (userInput: string) => {
-  // const { winningTokens } = game
+  const { winningTokens } = game
   if (AIChoice === userInput) {
-    setTimeout(announceWinner, 3000)
     result = game.result.draw
-  } else if (userInput === 'paper' && AIChoice === 'rock' ||
-      userInput === 'scissors' && AIChoice === 'paper' ||
-      userInput === 'rock' && AIChoice === 'scissors') {
-    setTimeout(announceWinner, 3000)
+  } else if (userInput === "paper" && (winningTokens["paper"].includes(AIChoice))) {
     result = game.result.PlayerWins
-    } else {
-    setTimeout(announceWinner, 3000)
+  } else if (userInput === "rock" && (winningTokens["rock"].includes(AIChoice))) {
+    result = game.result.PlayerWins
+  } else if (userInput === "scissors" && (winningTokens["scissors"].includes(AIChoice))) {
+    result = game.result.PlayerWins
+  } else if (userInput === "lizard" && (winningTokens["lizard"].includes(AIChoice))) {
+    result = game.result.PlayerWins
+  } else if (userInput === "spock" && (winningTokens["spock"].includes(AIChoice))) {
+    result = game.result.PlayerWins
+  } else {
     result = game.result.AIWins
-    }
-    return result
+  }
+    return setTimeout(announceWinner, 3000, result)
+  }
+
+    const announceWinner = (result: string) => {
+    setTimeout(displayResult.innerText = `${result}!!`, 3000)
+    setTimeout(resetGame, 3000)
+  }
+
+  const resetGame = () => {
+    console.log("GAME RESETTING");
+    AIChoice = "";
+    result = "";
+    instruction.style.visibility = "visible"; 
+    displayChoice.innerText = "";
+    displayResult.innerText = "";
+    userInputButtons.forEach(b => b.disabled = false);
   }
 
 
-
-  
-
-
-// Why dono variants of this work? I'm comparing a string in an object to a string or other non {} - does that present an issue?? Doesnt work if i'm comparing properties either, sooooooo....
-  // userInput == winningTokens.paper && AIChoice == 'rock' ||
-  //   userInput == winningTokens.scissors && AIChoice == 'paper' ||
-  //   userInput == winningTokens.rock && AIChoice == 'scissors' 
+// const decideWinner = (userInput: string) => {
+//   const { winningTokens } = game
+//   if (AIChoice === userInput) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.draw
+//   } else if (userInput === "paper" && (winningTokens["paper"].includes(AIChoice))) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.PlayerWins
+//   } else if (userInput === "rock" && (winningTokens["rock"].includes(AIChoice))) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.PlayerWins
+//   } else if (userInput === "scissors" && (winningTokens["scissors"].includes(AIChoice))) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.PlayerWins
+//   } else if (userInput === "lizard" && (winningTokens["lizard"].includes(AIChoice))) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.PlayerWins
+//   } else if (userInput === "spock" && (winningTokens["spock"].includes(AIChoice))) {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.PlayerWins
+//   } else {
+//     setTimeout(announceWinner, 3000)
+//     result = game.result.AIWins
+//     }
+//     return result
+//   }

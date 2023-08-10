@@ -1,9 +1,11 @@
 type Game = {
   tokenChoices: string[];
   winningTokens: {
-    rock: string;
-    paper: string;
-    scissors: string;
+    rock: string[];
+    paper: string[];
+    scissors: string[];
+    lizard: string[];
+    spock: string[];
   };
   result: {
     draw: string;
